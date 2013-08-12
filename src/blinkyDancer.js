@@ -1,14 +1,10 @@
 var BlinkyDancer = function(top, left, timeBetweenSteps){
-  var blinkyDancer = Dancer(top, left, timeBetweenSteps);
-  var oldStep = blinkyDancer.step;
-  blinkyDancer.step = function(){
-    oldStep();
-    blinkyDancer.$node.toggle();
-  };
-  return blinkyDancer;
+  Dancer.apply(this, arguments);
 };
 
-//messing with the prototype
-ChildClass.prototype = clone(Dancer.prototype);
-ChildClass.prototype.constructor = ChildClass;
-
+BlinkyDancer.prototype = Object.create(Dancer.prototype);
+BlinkyDancer.prototype.constructor = BlinkyDancer;
+BlinkyDancer.prototype.step = function() {
+  Dancer.prototype.step.call(this);
+  this.$node.toggle();
+};

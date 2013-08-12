@@ -6,12 +6,15 @@
     <script src="lib/jquery.js"></script>
     <script src="src/dancer.js"></script>
     <script src="src/blinkyDancer.js"></script>
+    <script src="src/balletDancer.js"></script>
+    <script src="src/streetDancer.js"></script>
   </head>
   <body>
 
     <div class="topbar">
       <span class="title">object dance party</span>
       <a href="#" class="addDancerButton" data-dancer-maker-function-name="BlinkyDancer">add a Blinky Dancer</a>
+      <a href="#" class="addDancerButton" data-dancer-maker-function-name="BalletDancer">add a Ballet Dancer</a>
     </div>
 
     <script>
@@ -31,10 +34,7 @@
            * A new object of the given type will be created and added
            * to the stage.
            */
-          var dancerMakerFunctionName = $(this).data("dancer-maker-function-name");
-
-          // get the maker function for the kind of dancer we're supposed to make
-          var dancerMakerFunction = window[dancerMakerFunctionName];
+          var dancerMakerFunction = window[$(this).data("dancer-maker-function-name")];
 
           // make a dancer with a random position
           var dancer = new dancerMakerFunction(

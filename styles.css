@@ -28,7 +28,11 @@ body, a:link, a:visited, a:active{
   position:absolute;
 }
 
-/*img {
+.ballet {
+  border:0px;
+  border-radius: 0px;
+}
+img {
   height:50px;
   position: absolute;
-}*/
+}

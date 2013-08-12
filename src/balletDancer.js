@@ -1,6 +1,6 @@
 var BalletDancer = function(top, left){
   Dancer.call(this, top, left, 50);
-  //	this.$node = $('<span class="ballet"><img src="lib/images/ballet.jpg" /></span>');
+  this.$node = $('<span class="dancer ballet"><img src="lib/images/ballet.jpg" /></span>');
   this.isHeadedRight = true;
   this.isHeadedUp = true;
 };
@@ -13,32 +13,25 @@ BalletDancer.prototype.step = function() {
   var height = $(window).height();
   var width = $(window).width();
 
-  if (this.top <= height && this.isHeadedUp) {
+  if (this.top < height && this.isHeadedUp) {
     this.top += 10;
+    if (this.top >= height) this.top = height;
   }
-  else {
+  else if (this.top > 0 && !this.isHeadedUp) {
     this.top -= 10;
+    if (this.top <= 0) this.top = 0;
   }
 
-  if (this.left <= width && this.isHeadedRight) {
+  if (this.left < width && this.isHeadedRight) {
     this.left += 10;
-  } else {
+    if (this.left >= width) this.left = width;
+  } else if (this.left > 0 && !this.isHeadedRight) {
     this.left -= 10;
+    if (this.left <= 0) this.left = 0;
   }
 
-  if(this.top === height) {
-    this.isHeadedUp = false;
-  }
-  if(this.top === 0) {
-    console.log(this.top);
-    this.isHeadedUp = true;
-  }
-  if(this.left === width) {
-    this.isHeadedRight = false;
-  }
-  if(this.left === 0) {
-    this.isHeadedRight = true;
-  }
+  if (this.top === height || this.top === 0) this.isHeadedUp = !this.isHeadedUp;
+  if (this.left === width || this.left === 0) this.isHeadedRight = !this.isHeadedRight;
 
   this.setPosition(this.top, this.left);
 };

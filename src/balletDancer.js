@@ -4,6 +4,7 @@ var BalletDancer = function(top, left){
   this.isHeadedRight = true;
   this.isHeadedUp = true;
   this.setPosition(top, left);
+  this._width = 50;
 };
 
 BalletDancer.prototype = Object.create(Dancer.prototype);
@@ -36,3 +37,6 @@ BalletDancer.prototype.step = function() {
 
   this.setPosition(this.top, this.left);
 };
+
+
+var result = result ? result : 0;

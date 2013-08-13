@@ -15,28 +15,15 @@
       <span class="title">object dance party</span>
       <a href="#" class="addDancerButton" data-dancer-maker-function-name="BlinkyDancer">add a Blinky Dancer</a>
       <a href="#" class="addDancerButton" data-dancer-maker-function-name="BalletDancer">add a Ballet Dancer</a>
+      <a href="#" class="addDancerButton" data-dancer-maker-function-name="StreetDancer">add a Street Dancer</a>
     </div>
 
     <script>
       $(document).ready(function(){
         window.dancers = [];
-
+        coordinateStreetDancers();
         $(".addDancerButton").on("click", function(event){
-          /* This function sets up the click handlers for the create-dancer
-           * buttons on index.html. You should not need to alter it.
-           * As long as the "data-dancer-maker-function-name" attribute of a
-           * class="addDancerButton" DOM node matches one of the names of the
-           * maker functions available in the global scope, clicking that node
-           * will call the function to make the dancer. */
-
-          /* dancerMakerFunctionName is a string which must match
-           * one of the dancer maker functions available in global scope.
-           * A new object of the given type will be created and added
-           * to the stage.
-           */
           var dancerMakerFunction = window[$(this).data("dancer-maker-function-name")];
-
-          // make a dancer with a random position
           var dancer = new dancerMakerFunction(
             $("body").height() * Math.random(),
             $("body").width() * Math.random(),

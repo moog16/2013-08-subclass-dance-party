@@ -32,6 +32,12 @@ body, a:link, a:visited, a:active{
   border:0px;
   border-radius: 0px;
 }
+
+.street {
+  border: 0px;
+  border-radius: 0px;
+}
+
 img {
   height:50px;
   position: absolute;

@@ -6,3 +6,6 @@ make the size bigger then smaller and move across the screen
 
 if collisions-->rotate around each other
 /turn into various SC chars --> teleporting
+
+get bpms of background music and set the streetdancers to follow it 
+make streetdancers bigger/smaller every so often

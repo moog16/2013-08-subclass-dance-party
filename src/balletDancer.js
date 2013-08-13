@@ -3,6 +3,7 @@ var BalletDancer = function(top, left){
   this.$node = $('<span class="dancer ballet"><img src="lib/images/ballet.jpg" /></span>');
   this.isHeadedRight = true;
   this.isHeadedUp = true;
+  this.setPosition(top, left);
 };
 
 BalletDancer.prototype = Object.create(Dancer.prototype);

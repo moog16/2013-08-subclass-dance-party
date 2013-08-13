@@ -1,6 +1,5 @@
 var BalletDancer = function(top, left){
   Dancer.call(this, top, left, 50);
-  //this.$node = this.$node.append('<img src="lib")
   this.$node.addClass('ballet');
   this.$node.append('<img src="lib/images/ballet.jpg" />');
   this.isHeadedRight = true;
@@ -39,6 +38,3 @@ BalletDancer.prototype.step = function() {
 
   this.setPosition(this.top, this.left);
 };
-
-
-var result = result ? result : 0;

@@ -8,6 +8,7 @@
     <script src="src/blinkyDancer.js"></script>
     <script src="src/balletDancer.js"></script>
     <script src="src/streetDancer.js"></script>
+    <script src="src/explosion.js"></script>
   </head>
   <body>
 
@@ -19,21 +20,66 @@
     </div>
 
     <script>
+      var $body;
+
+      var getDistance = function(object1, object2) {
+        return Math.sqrt(Math.pow(object2.left - object1.left, 2) + Math.pow(object2.top - object1.top, 2));
+      };
+
+      var detectCollision = function(object1, object2) {
+        var combinedRadius = object1._width/2 + object2._width/2;
+        return getDistance(object1, object2) < combinedRadius;
+      };
+
+      var explosion = function(objInd1, objInd2) {
+        var x = dancers[objInd1].left;
+        var y = dancers[objInd1].top;
+        var d1, d2;
+        if(objInd1 > objInd2) {
+          d1 = dancers.splice(objInd1, 1)[0];
+          d1.$node.remove();
+          d2 = dancers.splice(objInd2, 1)[0];
+          d2.$node.remove();
+        }
+        else {
+          d1 = dancers.splice(objInd2, 1)[0];
+          d1.$node.remove();
+          d2 = dancers.splice(objInd1, 1)[0];
+          d2.$node.remove();
+        }
+        var exp = new Explosion(y, x);
+        $body.append(exp.$node);
+        exp.$node.fadeOut(1000, function() {
+          exp.$node.remove();
+        });
+      };
+
       $(document).ready(function(){
+        $body = $('body');
         window.dancers = [];
         coordinateStreetDancers();
         $(".addDancerButton").on("click", function(event){
           var dancerMakerFunction = window[$(this).data("dancer-maker-function-name")];
           var dancer = new dancerMakerFunction(
-            $("body").height() * Math.random(),
-            $("body").width() * Math.random(),
+            $body.height() * Math.random(),
+            $body.width() * Math.random(),
             Math.random() * 1000
           );
-
-          $('body').append(dancer.$node);
+          $body.append(dancer.$node);
+          dancers.push(dancer);
         });
-      });
-    </script>
 
+        setInterval(function() {
+          for(var i=0; i < dancers.length; i++) {
+            for(var j=0; j < dancers.length; j++) {
+              if(i !== j) {
+                if (detectCollision(dancers[i], dancers[j])) explosion(i, j);
+              }
+            }
+          }
+        }, 50);
+        });
+    </script>
+    <audio src="lib/sound/roar.mp3" preload="auto" controls></audio>
   </body>
 </html>

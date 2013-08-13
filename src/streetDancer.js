@@ -1,6 +1,7 @@
 var StreetDancer = function(top, left, timeBetweenSteps){
   Dancer.apply(this, arguments);
-  this.$node = $('<span class="dancer street"><img class="streetDancer" src="lib/images/dancer.jpg" /></span>');
+  this.$node.addClass('street');
+  this.$node.append('<img class="streetDancer" src="lib/images/dancer.jpg" />');
   this.$node.on('resize', function(e) {
     this._width = this._width === 50 ? 100 : 50;
   });

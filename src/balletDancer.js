@@ -1,6 +1,8 @@
 var BalletDancer = function(top, left){
   Dancer.call(this, top, left, 50);
-  this.$node = $('<span class="dancer ballet"><img src="lib/images/ballet.jpg" /></span>');
+  //this.$node = this.$node.append('<img src="lib")
+  this.$node.addClass('ballet');
+  this.$node.append('<img src="lib/images/ballet.jpg" />');
   this.isHeadedRight = true;
   this.isHeadedUp = true;
   this.setPosition(top, left);

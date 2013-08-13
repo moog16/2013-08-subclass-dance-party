@@ -29,13 +29,13 @@ body, a:link, a:visited, a:active{
 }
 
 .ballet {
-  border:0px;
-  border-radius: 0px;
+  border:50px;
+  border-radius: 10px;
 }
 
 .street {
-  border: 0px;
-  border-radius: 0px;
+  border: 50px;
+  border-radius: 1px;
 }
 
 img {

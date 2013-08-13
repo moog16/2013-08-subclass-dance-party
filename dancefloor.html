@@ -17,10 +17,19 @@
       <a href="#" class="addDancerButton" data-dancer-maker-function-name="BlinkyDancer">add a Blinky Dancer</a>
       <a href="#" class="addDancerButton" data-dancer-maker-function-name="BalletDancer">add a Ballet Dancer</a>
       <a href="#" class="addDancerButton" data-dancer-maker-function-name="StreetDancer">add a Street Dancer</a>
+      <a href="#" onClick="lineUp();">line up All Dancers</a>
     </div>
 
     <script>
-      var $body;
+      var $body, dancers;
+
+      var lineUp = function() {
+        var dancer;
+        for(var i=0; i < dancers.length; i++) {
+          dancer = dancers[i];
+          dancer.setPosition(dancer.top, 40);
+        }
+      };
 
       var getDistance = function(object1, object2) {
         return Math.sqrt(Math.pow(object2.left - object1.left, 2) + Math.pow(object2.top - object1.top, 2));

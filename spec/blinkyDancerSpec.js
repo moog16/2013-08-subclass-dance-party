@@ -32,4 +32,14 @@ describe("blinkyDancer", function() {
       expect(blinkyDancer.step.callCount).to.be.equal(2);
     });
   });
+
+  describe("changeColor", function(){
+    it("should call changeColor on mouseover", function(){
+      changeColor = sinon.spy();
+      blinkyDancer.$node.trigger('mouseover');
+      expect(changeColor.called).to.be.true;
+    });
+  });
+
+
 });
